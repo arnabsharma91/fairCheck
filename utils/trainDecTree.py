@@ -40,11 +40,6 @@ def functrainDecTree():
     model = model.fit(X, Y)
     dump(model, 'Model/MUT.joblib')
 
-    #tree.export_graphviz(model, out_file='tree1.dot')
-    #dot_data = tree.export_graphviz(model, out_file=None, filled=True, rounded=True, special_characters=True)
-    #graph = graphviz.Source(dot_data)
-    #graph.render("DataBase1")
-
     return model
 
 
