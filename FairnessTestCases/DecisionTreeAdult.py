@@ -14,7 +14,7 @@ from joblib import dump, load
 def func_main():
 
     #Reading the dataset
-    df = pd.read_csv('Datasets/Adult.csv') 
+    df = pd.read_csv('Datasets/AdultMod.csv')
 
     data = df.values
 
@@ -32,7 +32,7 @@ def func_main():
     model = model.fit(X, Y)
     
     
-    dump(model, 'DecTreeAdult.joblib')
+    dump(model, 'DecTreeAdultOrig.joblib')
 
     return model
 

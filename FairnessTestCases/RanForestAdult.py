@@ -13,7 +13,7 @@ def func_main():
     
 
     #Reading the dataset
-    df = pd.read_csv('Datasets/Adult.csv') 
+    df = pd.read_csv('Datasets/AdultMod.csv')
 
     data = df.values
 
@@ -30,7 +30,7 @@ def func_main():
 
     #Fitting the model with the dataset
     model = model.fit(X, Y)
-    #dump(model, 'RanForestAdult.joblib')
+    dump(model, 'RanForestAdult.joblib')
 
     return model
 

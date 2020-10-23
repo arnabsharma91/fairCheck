@@ -36,7 +36,7 @@ def functrainDecTree():
     X = data[:, :-1]
     Y = data[:, -1]
     model = DecisionTreeClassifier(criterion="entropy", splitter="best", max_depth=None, min_samples_split=2, 
-                         min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=10)
+                         min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None)
     model = model.fit(X, Y)
     dump(model, 'Model/MUT.joblib')
 

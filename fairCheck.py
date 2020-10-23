@@ -26,6 +26,23 @@ class generateData:
         self.typeArr = feTypeArr
         self.minArr = minValArr
         self.maxArr = maxValArr
+        with open('param_dict.csv') as csv_file:
+            reader = cv.reader(csv_file)
+            self.paramDict = dict(reader)
+
+    # function to search for duplicate test data
+    def binSearch(self, alist, item):
+        if len(alist) == 0:
+            return False
+        else:
+            midpoint = len(alist) // 2
+            if alist[midpoint] == item:
+                return True
+            else:
+                if item < alist[midpoint]:
+                    return self.binSearch(alist[:midpoint], item)
+                else:
+                    return self.binSearch(alist[midpoint + 1:], item)
 
     # Function to generate a new sample
     def funcGenData(self):
@@ -60,7 +77,7 @@ class generateData:
 
     # Function to combine several steps
     def funcGenerateTestData(self):
-        tst_pm = 5000
+        tst_pm = int(self.paramDict['no_of_train'])
         testMatrix = np.zeros(((tst_pm + 1), len(self.nameArr)), dtype=object)
         feature_track = []
         flg = False
@@ -79,6 +96,35 @@ class generateData:
         with open('TestingData.csv', 'w', newline='') as csvfile:
             writer = cv.writer(csvfile)
             writer.writerow(self.nameArr)
+            writer.writerows(testMatrix)
+
+        if self.paramDict['train_data_available'] == 'True':
+            dfTrainData = pd.read_csv(self.paramDict['train_data_loc'])
+            self.generateTestTrain(dfTrainData, int(self.paramDict['train_ratio']))
+
+    # Function to take train data as test data
+    def generateTestTrain(self, dfTrainData, train_ratio):
+        tst_pm = round((train_ratio * dfTrainData.shape[0])/100)
+        data = dfTrainData.values
+        testMatrix = np.zeros(((tst_pm + 1), dfTrainData.shape[1]))
+        flg = True
+        testCount = 0
+        ratioTrack = []
+        noOfRows = dfTrainData.shape[0]
+        while testCount <= tst_pm:
+            ratio = rd.randint(0, noOfRows - 1)
+            if testCount >= 1:
+                flg = self.binSearch(ratioTrack, ratio)
+                if not flg:
+                    ratioTrack.append(ratio)
+                    testMatrix[testCount] = data[ratio]
+                    testCount = testCount + 1
+            if testCount == 0:
+                ratioTrack.append(ratio)
+                testMatrix[testCount] = data[ratio]
+                testCount = testCount + 1
+        with open('TestingData.csv', 'a', newline='') as csvfile:
+            writer = cv.writer(csvfile)
             writer.writerows(testMatrix)
 
 
@@ -189,25 +235,14 @@ class readXmlFile:
 
 class makeOracleData:
 
-    def __init__(self, model, train_data, train_data_loc):
+    def __init__(self, model):
         self.model = model
-        self.train_data = train_data
-        self.train_data_loc = train_data_loc
-        if self.train_data:
-            if self.train_data_loc == '':
-                raise Exception('Please provide the location of the train data')
-                sys.exit(1)
         with open('param_dict.csv') as csv_file:
             reader = cv.reader(csv_file)
             self.paramDict = dict(reader)
 
     def funcGenOracle(self):
-        if not self.train_data:
-            dfTest = pd.read_csv('TestingData.csv')
-        else:
-            dfTest = pd.read_csv(self.train_data_loc)
-            dfTest.to_csv('TestingData.csv', index=False, header=True)
-
+        dfTest = pd.read_csv('TestingData.csv')
         dataTest = dfTest.values
         predict_list = np.zeros((1, dfTest.shape[0]))
         X = dataTest[:, :-1]
@@ -239,7 +274,7 @@ class propCheck:
     def __init__(self, max_samples=None, deadline=None, model=None, no_of_params=None, xml_file='',
                  mul_cex=False, model_with_weight=False, train_data_available=False,
                  train_data_loc='',
-                 model_type=None, model_path=''):
+                 model_type=None, model_path='', no_of_train=None, train_ratio=None):
 
         self.paramDict = {}
         if max_samples is None:
@@ -307,6 +342,23 @@ class propCheck:
 
         f.close()
 
+        if no_of_train is None:
+            self.no_of_train = 1000
+        else:
+            self.no_of_train = no_of_train
+        if train_data_available:
+            if train_data_loc == '':
+                raise Exception('Please provide the training data location')
+                sys.exit(1)
+            else:
+                if train_ratio is None:
+                    self.paramDict['train_ratio'] = 100
+                else:
+                    self.paramDict['train_ratio'] = train_ratio
+        self.paramDict['no_of_train'] = self.no_of_train
+        self.paramDict['train_data_available'] = train_data_available
+        self.paramDict['train_data_loc'] = train_data_loc
+
         try:
             with open('param_dict.csv', 'w') as csv_file:
                 writer = cv.writer(csv_file)
@@ -315,10 +367,9 @@ class propCheck:
         except IOError:
             print("I/O error")
 
-        if not train_data_available:
-            genData = readXmlFile(self.xml_file)
-            genData.funcReadXml()
-        gen_oracle = makeOracleData(self.model, train_data_available, train_data_loc)
+        genData = readXmlFile(self.xml_file)
+        genData.funcReadXml()
+        gen_oracle = makeOracleData(self.model)
         gen_oracle.funcGenOracle()
 
 

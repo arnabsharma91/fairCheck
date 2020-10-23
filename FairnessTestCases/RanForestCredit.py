@@ -4,21 +4,14 @@
 import sys
 sys.path.append('../')
 import pandas as pd
-import csv as cv
-import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-import time
 from joblib import dump, load
 
 
 def func_main():
-    
-
     #Reading the dataset
-    df = pd.read_csv('Datasets/GermanCredit.csv') 
-
+    df = pd.read_csv('Datasets/GermanCredit.csv')
     data = df.values
-
     X = data[:, :-1]
     Y = data[:, -1]
     
@@ -32,6 +25,6 @@ def func_main():
 
     #Fitting the model with the dataset
     model = model.fit(X, Y)
-    #dump(model, 'RanForestCredit.joblib')
+    dump(model, 'RanForestCredit.joblib')
    
     return model

@@ -1,8 +1,8 @@
-from FairnessTestCases import DecisionTreeCredit, DecisionTreeAdult
 from fairCheck import Assume, Assert, propCheck
+from FairnessTestCases import LogRegAdult, NBAdult
 
-propCheck(no_of_params=2, max_samples=1500, model_type='sklearn', model=DecisionTreeAdult.func_main(),
-          mul_cex=True, xml_file='dataInput.xml')
+propCheck(no_of_params=2, max_samples=1500, model_type='sklearn', model=LogRegAdult.func_main(),
+          mul_cex=True, xml_file='dataInput.xml', no_of_train=5000)
 
 for i in range(0, 13):
     if i == 8:
