@@ -9,3 +9,7 @@ We have used Python3.6 to develop our tool. Hence, to run our tool you need to i
 ```
 pip install <package-name>
 ```
+
+## Usage
+Our tool needs to have the input schema which describes the input data instance for the given ML model under test. This schema is provided as an XML file. This file 
+We have provided a sample file ```testCase.py``` which is being used to  
