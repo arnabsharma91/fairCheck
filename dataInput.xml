@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <Inputs> 
+<Input> 
+ <Feature-name>age<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>1<\minVal> 
+ <maxVal>9<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>workclass<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>100<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>fnlwgt<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>74<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>education<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>15<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>martial_status<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>6<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>occupation<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>100<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>relationship<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>5<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>race<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>4<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>sex<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>1<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>capital_gain<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>99<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>capital_loss<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>43<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>hours_per_week<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>1<\minVal> 
+ <maxVal>99<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>native_country<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>100<\maxVal> 
+ <\Value> 
+ <\Input>
+<Input> 
+ <Feature-name>Class<\Feature-name> 
+ <Feature-type>int64<\Feature-type> 
+ <Value> 
+ <minVal>0<\minVal> 
+ <maxVal>1<\maxVal> 
+ <\Value> 
+ <\Input>
+<\Inputs>
