@@ -3,3 +3,9 @@ This repository contains the tool for testing a given ML model for a specific fa
 
 ## Contributors
 [Arnab Sharma](https://en.cs.uni-paderborn.de/sms/team/people/arnab-sharma), [Heike Wehrheim](https://en.cs.uni-paderborn.de/sms/team/people/heike-wehrheim)
+
+## Requirements
+We have used Python3.6 to develop our tool. Hence, to run our tool you need to install Python3. Also, you need to install scipy, scikit-learn, pandas, numpy, parsimonious and SMT solver z3. These can be installed using the ```pip``` command. For example: <br>
+```
+pip install <package-name>
+```
