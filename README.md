@@ -15,4 +15,4 @@ Our tool needs to have the input schema which describes the input data instance 
 ```
 python Dataframe2XML.py Datasets/Adult.csv
 ```
-After creating such a schema file, next step is to run our tool for testing fairness. We have created a sample file ```testCase.py``` which describes how to test a given ML model using our testing approach. 
+After creating such a schema file, next step is to run our tool for testing fairness. We have created a sample file ```testCase.py``` which describes how to test a given ML model using our testing approach. In the begining, you have to fix some parameters for our tools 
